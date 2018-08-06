@@ -1,0 +1,10 @@
+#pragma once
+#include "RenderComponent.h"
+#include "PhysicsComponent.h"
+#include "NetworkComponent.h"
+#include "CameraComponent.h"
+#include "ATBComponent.h"
+#include "CollisionComponent.h"
+#include "LifeTimerComponent.h"
+#include "TankControllerComponent.h"
+#include "TankAIComponent.h"

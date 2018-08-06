@@ -1,0 +1,24 @@
+Resource locations and tags
+
+Meshes
+label="tank" path="../Assets/Models/Tanque.txt"
+label="shell" path="../Assets/Models/Shell.txt"
+label="ground" path="../Assets/Models/Ground.txt"
+label="arena" path="../Assets/Models/Arena.txt"
+label="obstacle" path="../Assets/Models/Obstacle.txt"
+
+END
+
+Materials
+label="tank" path="../Assets/Textures/Tanque_1.DDS" PS="" VS=""
+label="shell" path="../Assets/Textures/Shell.DDS" PS="" VS=""
+label="ground" path="../Assets/Textures/Ground.DDS" PS="SimplePixelShader.hlsl" VS="scaledTextureVS.hlsl"
+label="arena" path="../Assets/Textures/Arena.DDS" PS="" VS=""
+label="obstacle" path="../Assets/Textures/obstacle.DDS" PS="" VS=""
+
+END
+
+Fonts
+label="CaptureIt" path="../Assets/Fonts/CaptureIt.dds" desc="../Assets/Fonts/CaptureIt.fnt"
+
+END

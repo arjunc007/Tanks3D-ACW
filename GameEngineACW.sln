@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\GameEngine.vcxproj", "{EFC09815-EC0E-478C-A869-050F7DEFCC12}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tanks3DGame", "Tanks3DGame\Tanks3DGame.vcxproj", "{09686CEB-2191-479C-B58E-1CDE949954A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12} = {EFC09815-EC0E-478C-A869-050F7DEFCC12}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug - DirectX|x64 = Debug - DirectX|x64
+		Debug - DirectX|x86 = Debug - DirectX|x86
+		Debug - OpenGL|x64 = Debug - OpenGL|x64
+		Debug - OpenGL|x86 = Debug - OpenGL|x86
+		Release - DirectX|x64 = Release - DirectX|x64
+		Release - DirectX|x86 = Release - DirectX|x86
+		Release - OpenGL|x64 = Release - OpenGL|x64
+		Release - OpenGL|x86 = Release - OpenGL|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - DirectX|x64.ActiveCfg = Debug - DirectX|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - DirectX|x64.Build.0 = Debug - DirectX|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - DirectX|x86.ActiveCfg = Debug - DirectX|Win32
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - DirectX|x86.Build.0 = Debug - DirectX|Win32
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - OpenGL|x64.ActiveCfg = Debug - OpenGL|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - OpenGL|x64.Build.0 = Debug - OpenGL|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - OpenGL|x86.ActiveCfg = Debug - OpenGL|Win32
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Debug - OpenGL|x86.Build.0 = Debug - OpenGL|Win32
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - DirectX|x64.ActiveCfg = Release - DirectX|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - DirectX|x64.Build.0 = Release - DirectX|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - DirectX|x86.ActiveCfg = Release - DirectX|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - DirectX|x86.Build.0 = Release - DirectX|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - OpenGL|x64.ActiveCfg = Release - OpenGL|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - OpenGL|x64.Build.0 = Release - OpenGL|x64
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - OpenGL|x86.ActiveCfg = Release - OpenGL|Win32
+		{EFC09815-EC0E-478C-A869-050F7DEFCC12}.Release - OpenGL|x86.Build.0 = Release - OpenGL|Win32
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - DirectX|x64.ActiveCfg = Debug - DirectX|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - DirectX|x64.Build.0 = Debug - DirectX|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - DirectX|x86.ActiveCfg = Debug - DirectX|Win32
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - DirectX|x86.Build.0 = Debug - DirectX|Win32
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - OpenGL|x64.ActiveCfg = Debug - OpenGL|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - OpenGL|x64.Build.0 = Debug - OpenGL|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - OpenGL|x86.ActiveCfg = Debug - OpenGL|Win32
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Debug - OpenGL|x86.Build.0 = Debug - OpenGL|Win32
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - DirectX|x64.ActiveCfg = Release - DirectX|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - DirectX|x64.Build.0 = Release - DirectX|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - DirectX|x86.ActiveCfg = Release - DirectX|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - DirectX|x86.Build.0 = Release - DirectX|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - OpenGL|x64.ActiveCfg = Release - OpenGL|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - OpenGL|x64.Build.0 = Release - OpenGL|x64
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - OpenGL|x86.ActiveCfg = Release - OpenGL|Win32
+		{09686CEB-2191-479C-B58E-1CDE949954A8}.Release - OpenGL|x86.Build.0 = Release - OpenGL|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B37E040-3B17-4DD2-AE8F-94649A325FF3}
+	EndGlobalSection
+EndGlobal
