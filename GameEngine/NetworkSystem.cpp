@@ -85,6 +85,8 @@ void NetworkSystem::ListenUDP(int port)
 #ifdef _DEBUG
 		Logger::Log("Received UDP broadcast: " + msgData->GetMessageType() + " From " + std::string(inet_ntoa(client.sin_addr)) + "," + std::to_string(ntohs(client.sin_port)));
 #endif
+
+		u_short p = 0;
 		if (msg->GetID() == _id)
 		{
 			Logger::Log("Received from self");
@@ -94,6 +96,7 @@ void NetworkSystem::ListenUDP(int port)
 		if (msgData->GetMessageType().substr(0,7).compare("connect") == 0)
 		{
 			client.sin_port = std::stoi(msgData->GetMessageType().substr(7));
+			p = ntohs(client.sin_port);
 			//Check if client is already connected
 			for (unsigned int i = 0; i < _clientSockets.size(); i++)
 			{
@@ -197,7 +200,7 @@ void NetworkSystem::Find(int port)
 	
 	UDPSocket broadcastSocket;
 	//broadcastSocket.SetDest("150.237.93.255", port);
-	broadcastSocket.SetDest("127.0.0.255", port);
+	broadcastSocket.SetDest("192.168.0.255", port);
 	broadcastSocket.SetOptions(SOL_SOCKET, SO_BROADCAST);
 
 	while (_clientSockets.size() < _maxClients)

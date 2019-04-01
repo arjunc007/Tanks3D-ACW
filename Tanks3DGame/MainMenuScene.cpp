@@ -94,13 +94,13 @@ void MainMenuScene::Render(RenderSystem* renderer)
 {
 	DirectX::XMMATRIX MVM = DirectX::XMMatrixIdentity();
 
-	renderer->Process(_gameObjects, 0);
+	//renderer->Process(_gameObjects, 0);
 	//_text->Load(renderer->GetRenderer(), L"..\\Assets\\Textures\\myfile.spritefont");
 	//_text->Draw(renderer->GetRenderer());
 	//_title->Render(renderer->GetRenderer(), MVM);
-	Text txt(_sceneManager->GetGame()->GetFont("CaptureIt"));
-	txt.SetText("Hello World!");
-	txt.Draw(renderer->GetRenderer());
+	//Text txt(_sceneManager->GetGame()->GetFont("CaptureIt"));
+	//txt.SetText("Hello World!");
+	//txt.Draw(renderer->GetRenderer());
 }
 
 /******************************************************************************************************************/
