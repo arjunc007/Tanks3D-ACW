@@ -146,7 +146,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|x64'">
     <IncludePath>..\AntTweakBar\include;..\GameEngine;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\AntTweakBar\lib;..\AntTweakBar\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\;..\AntTweakBar\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <ExecutablePath>..\AntTweakBar\include;..\GameEngine;$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
   </PropertyGroup>

@@ -1,23 +1,30 @@
 #pragma once
 #include <fstream>
+#include<mutex>
 
-typedef long HRESULT;
-
-#define FAILED(hr) (((HRESULT)(hr)) < 0)
-
-template  <class Var>
-inline void Log(Var x)
+class Logger
 {
-	std::ofstream fout("Logger.txt", std::ofstream::app);
-	fout << x << "\n";	
-	fout.close();
-}
+	//Data
+private:
+	static std::ofstream _fout;
+	static bool _fileOpen;
+	static std::mutex _mx;
 
-inline void ThrowIfFailed(HRESULT hr)
+public:
+	template  <typename Var>
+	static void Log(Var x)
 	{
-		if (FAILED(hr))
+		std::lock_guard<std::mutex> lock(_mx);
+		if (!_fileOpen)
 		{
-			// Set a breakpoint on this line to catch Win32 API errors.
-			//throw Platform::Exception::CreateException(hr);
+			_fout.open("Logger.txt", std::ofstream::app);
+			_fileOpen = true;
+		}
+		else
+		{
+			_fout << x << "\n";
+			_fout.close();
+			_fileOpen = false;
 		}
 	}
+};

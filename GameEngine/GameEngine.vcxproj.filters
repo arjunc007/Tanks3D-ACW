@@ -156,6 +156,7 @@
     <ClCompile Include="Text.cpp">
       <Filter>Platform Independent</Filter>
     </ClCompile>
+    <ClCompile Include="Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathsHelper.h" />

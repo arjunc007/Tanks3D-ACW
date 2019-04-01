@@ -5,19 +5,22 @@
 #define DATA_BUFSIZE 8192
 
 Socket::Socket()
-	: _isListening(false)
+	: _isListening(false),
+	_status(DISCONNECTED)
 {
 }
 
 Socket::Socket(sockaddr_in addr)
 	: _socketData(addr),
-	_isListening(false)
+	_isListening(false),
+	_status(DISCONNECTED)
 {
 }
 
 Socket::Socket(SOCKET s) 
 	: _socket(s),
-	_isListening(false)
+	_isListening(false),
+	_status(DISCONNECTED)
 {}
 
 
@@ -45,8 +48,8 @@ void Socket::SetOptions(const int level, const int options)
 
 	if (setsockopt(_socket, level, options, &enable, sizeof(int)) < 0)
 	{
-		Log("Broadcast failed");
-		Log(WSAGetLastError());
+		Logger::Log("Broadcast failed");
+		Logger::Log(WSAGetLastError());
 		Disconnect();
 	}
 }
@@ -55,19 +58,21 @@ void Socket::Bind()
 {
 	if (bind(_socket, (sockaddr *)&_socketData, sizeof(_socketData)) == SOCKET_ERROR) {
 		int e = WSAGetLastError();
-		Log("Bind failed with ");
-		Log(e);
+		Logger::Log("Bind failed with ");
+		Logger::Log(e);
 	}
 }
 
 bool Socket::Connect()
 {
 	if (connect(_socket, (sockaddr *)&_socketData, sizeof(_socketData)) == SOCKET_ERROR) {
-		Log("Connect to peer failed with "); 
-		Log(WSAGetLastError());
+		int e = WSAGetLastError();
+		Logger::Log("Connect to peer failed with ");
+		Logger::Log(e);
 		return false;
 	}
 
+	_status = CONNECTED;
 	return true;
 }
 
@@ -84,6 +89,8 @@ bool Socket::Disconnect()
 	} while (result > 0);
 	
 	closesocket(_socket);
+
+	_status = DISCONNECTED;
 
 	return true;
 }

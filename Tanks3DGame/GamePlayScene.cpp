@@ -98,10 +98,10 @@ void GamePlayScene::OnKeyboard(int key, bool down)
 	case 82: // R
 		Reset();
 		break;
-	case 83: // S = open for networking
+	case 78: // N = open for networking
 		if (!_online)
 		{
-			_threadList.push_back(new std::thread(&NetworkSystem::Initialise, &_networkSystem, 9172));
+			_networkSystem.Initialise(9172);//UDP listening port
 			_online = true;
 		}
 		break;

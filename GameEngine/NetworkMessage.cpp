@@ -2,19 +2,20 @@
 #include "Logger.h"
 
 
-NetworkMessage::NetworkMessage(int id, const char* msg)
+NetworkMessage::NetworkMessage(int id, const char* msg, int size)
 	: Message("network"),
 	_id(id)
 {
-	if (strlen(msg) < 50)
+
+	if (size < 50)
 	{
-		for (unsigned int i = 0; i < strlen(msg); i++)
+		for (unsigned int i = 0; i < size; i++)
 		{
 			_msg[i] = *(msg + i);
 		}
 	}
 	else
-		Log("Message exceeds capacity");
+		Logger::Log("Message exceeds capacity");
 }
 
 

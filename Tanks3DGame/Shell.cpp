@@ -59,7 +59,7 @@ void Shell::OnMessage(Message* msg)
 		if (col->GetCollidee() == this ||
 			col->GetCollider() == this)
 		{
-			Log(col->GetCollidee()->GetType());
+			Logger::Log(col->GetCollidee()->GetType());
 
 			// Send out death message
 			DeadObjectMessage dom(this);

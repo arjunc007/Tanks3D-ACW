@@ -101,7 +101,7 @@ void Game::LoadResources()
 	std::ifstream fin("Resources.txt");
 
 	std::string tmp, path, label;
-	int startpos;
+	size_t startpos;
 
 	if (fin.good())
 	{
@@ -129,7 +129,7 @@ void Game::LoadResources()
 			else
 			{
 				delete mesh;
-				Log("Failed to read mesh " + label);
+				Logger::Log("Failed to read mesh " + label);
 			}
 		}
 
@@ -167,7 +167,7 @@ void Game::LoadResources()
 			if (!material->LoadTexture(_renderer, wPath.c_str()))
 			{
 				delete material;
-				Log("Failed to read material " + label);
+				Logger::Log("Failed to read material " + label);
 				return;
 			}
 			if(!wPS.empty())
@@ -212,6 +212,6 @@ void Game::LoadResources()
 	}
 	else
 	{
-		Log("Resource file failed to load");
+		Logger::Log("Resource file failed to load");
 	}
 }

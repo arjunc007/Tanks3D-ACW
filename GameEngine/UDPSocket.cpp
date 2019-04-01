@@ -9,8 +9,8 @@ UDPSocket::UDPSocket()
 
 	if (_socket == INVALID_SOCKET) {
 		int e = WSAGetLastError();
-		Log("Create broadcast socket failed");
-		Log(e);
+		Logger::Log("Create broadcast socket failed");
+		Logger::Log(e);
 	}
 }
 
@@ -28,8 +28,8 @@ void UDPSocket::Send(const char* msg, const int len)
 	if (sendto(_socket, msg, len, 0, (sockaddr*)&_socketData, sizeof(_socketData)) == SOCKET_ERROR)
 	{
 		int e = WSAGetLastError();
-		Log("Sending message failed");
-		Log(e);
+		Logger::Log("Sending message failed");
+		Logger::Log(e);
 	}
 }
 
@@ -44,8 +44,8 @@ sockaddr_in UDPSocket::Read(char* buffer, const int len)
 	if (bytes == SOCKET_ERROR)
 	{
 		int e = WSAGetLastError();
-		Log("Receive failed with ");
-		Log(e);
+		Logger::Log("Receive failed with ");
+		Logger::Log(e);
 	}
 
 	return sender;

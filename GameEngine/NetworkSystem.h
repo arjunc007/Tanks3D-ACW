@@ -1,7 +1,10 @@
 #pragma once
 #include "System.h"
 #include "TCPSocket.h"
+#include "UDPSocket.h"
 #include <vector>
+#include <thread>
+#include <mutex>
 
 class NetworkComponent;
 
@@ -13,8 +16,11 @@ class NetworkSystem :
 private:
 	int _id;
 	//Socket _listeningSocket;
-	std::vector<TCPSocket*> _clientSockets;
-	TCPSocket* _hostSocket;
+	std::vector<TCPSocket> _clientSockets;
+	std::thread _tcpListenerThread;
+	std::thread _udpListenerThread;
+	TCPSocket* _tcpListenerSocket;
+	UDPSocket* _udpListenerSocket;
 
 	//Flags
 	bool _isListeningUDP;
@@ -34,5 +40,9 @@ public:
 	void Find(int port);
 	void UpdateID(const char* msg);
 	//void Decode(WPARAM wParam);
+
+private:
+	void ListenUDP(int port);
+	void ListenTCP(int port);
 };
 

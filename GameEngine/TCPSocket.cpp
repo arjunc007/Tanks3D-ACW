@@ -4,21 +4,25 @@
 #include "Logger.h"
 #include "Window.h"
 
+#include <string>
 
-TCPSocket::TCPSocket()
-	: Socket()
+TCPSocket::TCPSocket() : Socket()
 {
 	_socket = socket(AF_INET, SOCK_STREAM, 0);
 
 	if (_socket == INVALID_SOCKET) {
-		Log("Create socket failed");
+		Logger::Log("Create socket failed");
 	}
 }
 
-TCPSocket::TCPSocket(sockaddr_in addr)
+TCPSocket::TCPSocket(sockaddr_in addr = { 0 })
 	: Socket(addr)
 {
+	_socket = socket(AF_INET, SOCK_STREAM, 0);
 
+	if (_socket == INVALID_SOCKET) {
+		Logger::Log("Create socket failed");
+	}
 }
 
 TCPSocket::TCPSocket(SOCKET s) : Socket(s)
@@ -36,8 +40,8 @@ void TCPSocket::Send(const char* msg, const int len)
 	if (send(_socket, msg, len, 0) == SOCKET_ERROR)
 	{
 		int e = WSAGetLastError();
-		Log("Send failed with ");
-		Log(e);
+		Logger::Log("Send failed with ");
+		Logger::Log(e);
 	}
 }
 
@@ -46,13 +50,13 @@ TCPSocket TCPSocket::Accept()
 	SOCKET s = accept(_socket, NULL, NULL);
 	if (s == INVALID_SOCKET) {
 		int e = WSAGetLastError();
-		Log("Accept failed with ");
-		Log(e);
+		Logger::Log("Accept failed with ");
+		Logger::Log(e);
 		return TCPSocket(INVALID_SOCKET);
 	}
 #ifdef _DEBUG
-	Log("Received packet");
-	Log(s);
+	Logger::Log("Received packet");
+	Logger::Log(s);
 #endif
 
 	return TCPSocket(s);
@@ -71,8 +75,8 @@ sockaddr_in TCPSocket::Read(char* buffer, const int len)
 
 			if (bytes == SOCKET_ERROR) {
 				int e = WSAGetLastError();
-				Log("Receive failed with ");
-				Log(e);
+				Logger::Log("Receive failed with ");
+				Logger::Log(e);
 			}
 			else
 				receivedBytes += bytes;
@@ -85,24 +89,26 @@ sockaddr_in TCPSocket::Read(char* buffer, const int len)
 	return s.GetInfo();
 }
 
-void TCPSocket::Listen(const int port)
+void TCPSocket::Listen()
 {
-#ifdef _DEBUG
-	Log("Start TCP Listening...");
-#endif
-	
 	//Make nonblocking
 	u_long mode = 1;
 	if (ioctlsocket(_socket, FIONBIO, &mode) == SOCKET_ERROR)
 	{
 		int e = WSAGetLastError();
-		Log("Setting nonblocking falied");
-		Log(e);
+		Logger::Log("Setting nonblocking failed");
+		Logger::Log(e);
+		return;
 	}
 	else if (listen(_socket, 5) == SOCKET_ERROR)
 	{
 		int e = WSAGetLastError();
-		Log("Setting nonblocking falied");
-		Log(e);
+		Logger::Log("TCP Listen failed");
+		Logger::Log(e);
+		return;
 	}
+
+#ifdef _DEBUG
+	Logger::Log("Started TCP Listening on port " + std::to_string(ntohs(_socketData.sin_port)));
+#endif
 }

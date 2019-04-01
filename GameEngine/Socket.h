@@ -3,6 +3,12 @@
 
 #pragma comment (lib, "Ws2_32.lib")
 
+enum SocketState
+{
+	DISCONNECTED,
+	CONNECTED
+};
+
 class Socket
 {
 	//Data
@@ -10,6 +16,7 @@ protected:
 	SOCKET _socket;
 	sockaddr_in _socketData;
 	bool _isListening;
+	SocketState _status;
 
 	//Structors
 public:
@@ -25,6 +32,7 @@ public:
 	void SetInfo(sockaddr_in);
 	bool IsListening() const { return _isListening; }
 	void IsListening(bool b) { _isListening = b; }
+	bool Connected() const { return _status == CONNECTED; }
 
 	//Functions
 public:
