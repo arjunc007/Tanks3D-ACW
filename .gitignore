@@ -4,6 +4,7 @@
 #Custom
 [Dd]ebug*/
 [Rr]elease*/
+!AntTweakBar/lib/*.*
 
 # User-specific files
 *.suo
