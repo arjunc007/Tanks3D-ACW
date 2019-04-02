@@ -35,58 +35,62 @@ TCPSocket::~TCPSocket()
 {
 }
 
-void TCPSocket::Send(const char* msg, const int len)
+int TCPSocket::Send(const char* msg, const int len)
 {
-	if (send(_socket, msg, len, 0) == SOCKET_ERROR)
+	int bytesSent = send(_socket, msg, len, 0);
+	if (bytesSent == SOCKET_ERROR)
 	{
 		int e = WSAGetLastError();
 		Logger::Log("Send failed with ");
 		Logger::Log(e);
 	}
+
+	return bytesSent;
 }
 
 TCPSocket TCPSocket::Accept()
 {
-	SOCKET s = accept(_socket, NULL, NULL);
+	sockaddr_in addr;
+	int addrlen = sizeof(addr);
+	SOCKET s = accept(_socket, (sockaddr*)&addr, &addrlen);
 	if (s == INVALID_SOCKET) {
 		int e = WSAGetLastError();
 		Logger::Log("Accept failed with ");
 		Logger::Log(e);
 		return TCPSocket(INVALID_SOCKET);
 	}
+
 #ifdef _DEBUG
-	Logger::Log("Received packet");
-	Logger::Log(s);
+	Logger::Log("Accepted socket " + std::to_string(s));
 #endif
 
-	return TCPSocket(s);
+	TCPSocket acceptedSocket(s);
+	acceptedSocket.SetInfo(addr);
+	return acceptedSocket;
 }
 
-sockaddr_in TCPSocket::Read(char* buffer, const int len)
+int TCPSocket::Read(char* buffer, const int len, sockaddr_in* clientInfo)
 {
 	TCPSocket s = Accept();
 	int receivedBytes = 0;
 	int bytes = 0;
 	
-	while (1)
-	{
-		do {
-			bytes = recv(_socket, buffer + receivedBytes, len - receivedBytes, 0);
+	do {
+		bytes = recv(_socket, buffer + receivedBytes, len - receivedBytes, 0);
 
-			if (bytes == SOCKET_ERROR) {
-				int e = WSAGetLastError();
-				Logger::Log("Receive failed with ");
-				Logger::Log(e);
-			}
-			else
-				receivedBytes += bytes;
+		if (bytes == SOCKET_ERROR) {
+			int e = WSAGetLastError();
+			Logger::Log("TCP Receive failed with " + std::to_string(e));
+		}
+		else if (bytes = 0)
+		{
+			break;
+		}
+		else
+			receivedBytes += bytes;
+	} while (receivedBytes < len);
 
-		} while (receivedBytes < len);
-
-	}
-	IsListening(false);
-
-	return s.GetInfo();
+	return bytes;
 }
 
 void TCPSocket::Listen()

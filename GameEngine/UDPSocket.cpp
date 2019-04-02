@@ -23,23 +23,25 @@ UDPSocket::~UDPSocket()
 {
 }
 
-void UDPSocket::Send(const char* msg, const int len)
+int UDPSocket::Send(const char* msg, const int len)
 {
-	if (sendto(_socket, msg, len, 0, (sockaddr*)&_socketData, sizeof(_socketData)) == SOCKET_ERROR)
+	int bytesSent = sendto(_socket, msg, len, 0, (sockaddr*)&_socketData, sizeof(_socketData));
+	if (bytesSent == SOCKET_ERROR)
 	{
 		int e = WSAGetLastError();
 		Logger::Log("Sending message failed");
 		Logger::Log(e);
 	}
+
+	return bytesSent;
 }
 
-sockaddr_in UDPSocket::Read(char* buffer, const int len)
+int UDPSocket::Read(char* buffer, const int len, sockaddr_in* clientInfo)
 {
-	sockaddr_in sender;
 	int addrlen = sizeof(sockaddr_in);
 	int bytes = 0;
 	
-	bytes = recvfrom(_socket, buffer, len, 0, (sockaddr*)&sender, &addrlen);
+	bytes = recvfrom(_socket, buffer, len, 0, (sockaddr*)clientInfo, &addrlen);
 
 	if (bytes == SOCKET_ERROR)
 	{
@@ -48,5 +50,5 @@ sockaddr_in UDPSocket::Read(char* buffer, const int len)
 		Logger::Log(e);
 	}
 
-	return sender;
+	return bytes;
 }

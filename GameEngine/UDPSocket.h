@@ -12,7 +12,7 @@ public:
 
 	//Functions
 public:
-	void Send(const char* msg, const int len);
-	sockaddr_in Read(char* buffer, const int len);
+	int Send(const char* msg, const int len);
+	int Read(char* buffer, const int len, sockaddr_in* clientInfo);
 };
 

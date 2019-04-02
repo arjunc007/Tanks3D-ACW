@@ -36,11 +36,11 @@ public:
 
 	//Functions
 public:
-	virtual void Send(const char* msg, const int len) = 0;
+	virtual int Send(const char* msg, const int len) = 0;
 	void SetDest(const char* ip, const int port);
 	void SetOptions(const int level, const int option);
 	void Bind();
-	virtual sockaddr_in Read(char* buffer, const int len) = 0;
+	virtual int Read(char* buffer, const int len, sockaddr_in* clientInfo) = 0;
 	bool Connect();
 	bool Disconnect();
 	
