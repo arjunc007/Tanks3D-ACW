@@ -71,24 +71,14 @@ TCPSocket TCPSocket::Accept()
 
 int TCPSocket::Read(char* buffer, const int len, sockaddr_in* clientInfo)
 {
-	TCPSocket s = Accept();
-	int receivedBytes = 0;
 	int bytes = 0;
 	
-	do {
-		bytes = recv(_socket, buffer + receivedBytes, len - receivedBytes, 0);
+	bytes = recv(_socket, buffer, len, 0);
 
-		if (bytes == SOCKET_ERROR) {
-			int e = WSAGetLastError();
-			Logger::Log("TCP Receive failed with " + std::to_string(e));
-		}
-		else if (bytes = 0)
-		{
-			break;
-		}
-		else
-			receivedBytes += bytes;
-	} while (receivedBytes < len);
+	if (bytes == SOCKET_ERROR) {
+		int e = WSAGetLastError();
+		Logger::Log("TCP Receive failed with " + std::to_string(e));
+	}
 
 	return bytes;
 }
@@ -111,6 +101,8 @@ void TCPSocket::Listen()
 		Logger::Log(e);
 		return;
 	}
+
+	_status = LISTENING;
 
 #ifdef _DEBUG
 	Logger::Log("Started TCP Listening on port " + std::to_string(ntohs(_socketData.sin_port)));

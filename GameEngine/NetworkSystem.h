@@ -15,10 +15,11 @@ class NetworkSystem :
 	//Data
 private:
 	int _id;
-	//Socket _listeningSocket;
+	std::vector<int> _clientIDs;
 	std::vector<TCPSocket> _clientSockets;
 	std::thread _tcpListenerThread;
 	std::thread _udpListenerThread;
+	std::thread _udpBroadcastThread;
 	TCPSocket* _tcpListenerSocket;
 	UDPSocket* _udpListenerSocket;
 

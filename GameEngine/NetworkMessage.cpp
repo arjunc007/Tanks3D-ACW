@@ -15,7 +15,7 @@ NetworkMessage::NetworkMessage(int id, const char* msg, int size)
 		}
 	}
 	else
-		Logger::Log("Message exceeds capacity");
+		Logger::Log("NetworkMessage: Message exceeds capacity");
 }
 
 

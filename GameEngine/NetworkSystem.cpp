@@ -83,31 +83,31 @@ void NetworkSystem::ListenUDP(int port)
 		NetworkMessage* msg = reinterpret_cast<NetworkMessage*>(buffer);
 		Message* msgData = reinterpret_cast<Message*>(msg->GetMessageData());
 
-#ifdef _DEBUG
-		Logger::Log("Received UDP broadcast: " + msgData->GetMessageType() + " From " + std::string(inet_ntoa(client.sin_addr)) + "," + std::to_string(ntohs(client.sin_port)));
-#endif
-
 		u_short p = 0;
 		if (msg->GetID() == _id)
 		{
-			Logger::Log("Received from self");
 			goto clientexists;
 		}
+
+#ifdef _DEBUG
+		Logger::Log("Received UDP : " + msgData->GetMessageType() + " From " + std::string(inet_ntoa(client.sin_addr)) + "," + std::to_string(ntohs(client.sin_port)));
+#endif
 
 		if (msgData->GetMessageType().substr(0,7).compare("connect") == 0)
 		{
 			client.sin_port = std::stoi(msgData->GetMessageType().substr(7));
 			p = ntohs(client.sin_port);
 			//Check if client is already connected
-			for (unsigned int i = 0; i < _clientSockets.size(); i++)
+			for (unsigned int i = 0; i < _clientIDs.size(); i++)
 			{
-				if (_clientSockets[i] == TCPSocket(client))
+				if (_clientIDs[i] == msg->GetID())
 				{
 					Logger::Log("Client already exists");
 					goto clientexists;
 				}
 			}
 
+			_clientIDs.push_back(msg->GetID());
 			Add(client);
 		clientexists:
 			;
@@ -200,7 +200,7 @@ void NetworkSystem::ListenTCP(int port)
 			{
 				//Check if it was for closing , and also read the  
 				//incoming message  
-				if (bytesRead = _tcpListenerSocket->Read(buffer, sizeof(buffer)) == 0)
+				if (bytesRead = _clientSockets[i].Read(buffer, sizeof(buffer)) == 0)
 				{
 					//Somebody disconnected , get his details and print  
 					Logger::Log(std::string("Host disconnected , ip ") + inet_ntoa(_clientSockets[i].GetInfo().sin_addr) + ", port: "
@@ -218,6 +218,7 @@ void NetworkSystem::ListenTCP(int port)
 					//set the string terminating NULL byte on the end  
 					//of the data read  
 					buffer[bytesRead] = '\0';
+					Logger::Log(buffer);
 					_clientSockets[i].Send("Received ACK", 13);
 				}
 			}
@@ -236,6 +237,8 @@ void NetworkSystem::Initialise(int port)
 
 	//Start TCP Listener on another port
 	_tcpListenerThread = std::thread(&NetworkSystem::ListenTCP, this, port + 5);
+
+	_udpBroadcastThread = std::thread(&NetworkSystem::Find, this, 9173);
 }
 
 /******************************************************************************************************************/
@@ -245,13 +248,20 @@ void NetworkSystem::Add(sockaddr_in clientInfo)
 	
 	//Add to list of client sockets and start listening
 	TCPSocket newClient(clientInfo);
-	_clientSockets.push_back(newClient);
-	Logger::Log("New client added");
+
+	if (newClient.Connect())
+	{
+		Message innerMsg("ACK" + std::to_string(_tcpListenerSocket->GetInfo().sin_port));
+		NetworkMessage msg(_id, reinterpret_cast<char*>(&innerMsg), sizeof(innerMsg));
+		newClient.Send(reinterpret_cast<char*>(&msg), sizeof(msg));
+		Logger::Log("ACK sent to new client");
+	}
+	else
+	{
+		_clientIDs.pop_back();
+	}
 	
-	//Start TCP connection
-	//newClient.ListenAsync(ntohs(client.sin_port));
-	
-	Acknowledge(newClient);
+	//Acknowledge(newClient);
 }
 
 /******************************************************************************************************************/
@@ -260,12 +270,12 @@ void NetworkSystem::Acknowledge(TCPSocket s)
 {
 	//Then calculate the ID and send it back
 	size_t id = _clientSockets.size();
-	NetworkMessage msg = NetworkMessage(id, reinterpret_cast<char*>(&Message("ack")), sizeof(Message));
+	Message ack("ACK");
+	NetworkMessage msg = NetworkMessage(id, reinterpret_cast<char*>(&ack), sizeof(ack));
 	s.Connect();
 	s.Send(reinterpret_cast<char*>(&msg), sizeof(msg));
 #ifdef _DEBUG
-	Logger::Log("New client connected on");
-	Logger::Log(id);
+	Logger::Log("New client connected on" + std::to_string(id));
 #endif
 }
 
@@ -273,6 +283,7 @@ void NetworkSystem::Acknowledge(TCPSocket s)
 
 void NetworkSystem::Find(int port)
 {
+	while (_tcpListenerSocket == nullptr || !_tcpListenerSocket->IsListening());
 	//Broadcast UDP packets and wait for response
 
 	Message innerMsg("connect" + std::to_string(_tcpListenerSocket->GetInfo().sin_port));
@@ -280,7 +291,7 @@ void NetworkSystem::Find(int port)
 	
 	UDPSocket broadcastSocket;
 	//broadcastSocket.SetDest("150.237.93.255", port);
-	broadcastSocket.SetDest("192.168.0.255", port);
+	broadcastSocket.SetDest("127.0.0.255", port);
 	broadcastSocket.SetOptions(SOL_SOCKET, SO_BROADCAST);
 
 	while (_clientSockets.size() < _maxClients)

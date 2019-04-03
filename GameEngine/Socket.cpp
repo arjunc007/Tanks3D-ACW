@@ -5,21 +5,18 @@
 #define DATA_BUFSIZE 8192
 
 Socket::Socket()
-	: _isListening(false),
-	_status(DISCONNECTED)
+	:_status(DISCONNECTED)
 {
 }
 
 Socket::Socket(sockaddr_in addr)
 	: _socketData(addr),
-	_isListening(false),
 	_status(DISCONNECTED)
 {
 }
 
 Socket::Socket(SOCKET s) 
 	: _socket(s),
-	_isListening(false),
 	_status(DISCONNECTED)
 {}
 
@@ -34,7 +31,7 @@ void Socket::SetInfo(sockaddr_in s)
 	_socketData = s;
 }
 
-//Set the ip and port
+//Set the ip and port in host format
 void Socket::SetDest(const char* ip, const int port)
 {
 	_socketData.sin_family = AF_INET;

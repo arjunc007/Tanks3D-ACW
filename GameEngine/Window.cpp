@@ -1,6 +1,6 @@
 #include "Window.h"
 #include <stdlib.h>
-#include <time.h>
+#include <ctime>
 
 Window*	Window::TheWindow = 0;
 

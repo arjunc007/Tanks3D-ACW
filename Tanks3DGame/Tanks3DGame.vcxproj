@@ -313,6 +313,7 @@
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="TankAIComponent.cpp" />
     <ClCompile Include="TankControllerComponent.cpp" />
+    <ClCompile Include="TankNetworkComponent.cpp" />
     <ClCompile Include="Tanks3DGame.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +333,7 @@
     <ClInclude Include="Tank.h" />
     <ClInclude Include="TankAIComponent.h" />
     <ClInclude Include="TankControllerComponent.h" />
+    <ClInclude Include="TankNetworkComponent.h" />
     <ClInclude Include="Tanks3DGame.h" />
   </ItemGroup>
   <ItemGroup>

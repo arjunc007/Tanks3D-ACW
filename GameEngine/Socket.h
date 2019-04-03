@@ -6,7 +6,8 @@
 enum SocketState
 {
 	DISCONNECTED,
-	CONNECTED
+	CONNECTED,
+	LISTENING
 };
 
 class Socket
@@ -15,7 +16,6 @@ class Socket
 protected:
 	SOCKET _socket;
 	sockaddr_in _socketData;
-	bool _isListening;
 	SocketState _status;
 
 	//Structors
@@ -30,9 +30,8 @@ public:
 	SOCKET GetSocket() const { return _socket; }
 	sockaddr_in GetInfo() const { return _socketData; }
 	void SetInfo(sockaddr_in);
-	bool IsListening() const { return _isListening; }
-	void IsListening(bool b) { _isListening = b; }
-	bool Connected() const { return _status == CONNECTED; }
+	bool IsListening() const { return _status == LISTENING; }
+	bool IsConnected() const { return _status == CONNECTED; }
 
 	//Functions
 public:

@@ -62,6 +62,9 @@
     <ClCompile Include="ScoreDisplay.cpp">
       <Filter>Gameobjects</Filter>
     </ClCompile>
+    <ClCompile Include="TankNetworkComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Tanks3DGame.h" />
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="ScoreDisplay.h">
       <Filter>Gameobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="TankNetworkComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

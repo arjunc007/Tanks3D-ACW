@@ -87,11 +87,11 @@ void GamePlayScene::OnKeyboard(int key, bool down)
 					  // Switch key presses
 	switch (key)
 	{
-	case 74: // J = Find and join existing game
-		if (_online)
-		{
-			_threadList.push_back(new std::thread(&NetworkSystem::Find, &_networkSystem, 9172));
-		}
+	//case 74: // J = Find and join existing game
+	//	if (_online)
+	//	{
+	//		_threadList.push_back(new std::thread(&NetworkSystem::Find, &_networkSystem, 9172));
+	//	}
 	case 80: // P = pause
 		//_sceneManager->PushScene(new PauseScene(_scoreDisplay->GetScore()));
 		break;
