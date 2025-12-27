@@ -32,9 +32,9 @@ public:
 	void ShouldDraw(bool v) { _shouldDraw = v; }
 
 	// Get position/scale/angle etc from parent object
-	DirectX::XMFLOAT3 GetScale()						const { return _parent->GetScale(); }
-	DirectX::XMFLOAT3 GetPosition()					const { return _parent->GetPosition(); }
-	DirectX::XMFLOAT4 GetRotation()					const { return _parent->GetRotation(); }
+	const DirectX::XMFLOAT3& GetScale()						const { return _parent->GetScale(); }
+	const DirectX::XMFLOAT3& GetPosition()					const { return _parent->GetPosition(); }
+	const DirectX::XMFLOAT4& GetRotation()					const { return _parent->GetRotation(); }
 
 
 	// Functions

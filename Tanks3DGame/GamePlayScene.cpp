@@ -135,7 +135,8 @@ void GamePlayScene::Update(double deltaTime)
 
 	//Follow camera
 	DirectX::XMVECTOR cameraOffset = DirectX::XMLoadFloat3(&_tank->GetPosition());
-	DirectX::XMVECTOR tankPos = DirectX::XMLoadFloat3(&_tank->GetForward());
+	const auto forward = _tank->GetForward();
+	DirectX::XMVECTOR tankPos = DirectX::XMLoadFloat3(&forward);
 	tankPos = DirectX::XMVectorScale(tankPos, -24.0f);
 	cameraOffset = DirectX::XMVectorAdd(cameraOffset, tankPos);
 	cameraOffset = DirectX::XMVectorAdd(cameraOffset, DirectX::XMVectorSet(0.0f, 15.0f, 0.0f, 0.0f));

@@ -49,14 +49,14 @@ private:
 
 	// Gets/sets
 public:
-	DirectX::XMFLOAT3 GetScale()										const { return _scale; }
+	const DirectX::XMFLOAT3& GetScale()										const { return _scale; }
 	void SetScale(float v) { _scale.x = _scale.y = _scale.z = v; }
 	void SetScale(DirectX::XMFLOAT3 v) { _scale = v; }
 
-	DirectX::XMFLOAT3 GetPosition()										const { return _position; }
+	const DirectX::XMFLOAT3& GetPosition()								const { return _position; }
 	void SetPosition(DirectX::XMFLOAT3 v) { _position = v; }
 
-	DirectX::XMFLOAT4 GetRotation()										const { return _rotation; }
+	const DirectX::XMFLOAT4& GetRotation()								const { return _rotation; }
 	void SetRotation(DirectX::XMFLOAT4 r) { _rotation = r; }
 	void SetRotation(float pitch, float yaw, float roll);
 

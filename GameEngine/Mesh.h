@@ -1,4 +1,6 @@
 #pragma once
+#include <fstream>
+#include <string>
 #include <vector>
 #include "VBO.h"
 #include "Vertex.h"

@@ -18,7 +18,7 @@ public:
 
 	// Gets/Sets
 public:
-	DirectX::XMFLOAT3 GetThrust()		const { return _thrust; }
+	const DirectX::XMFLOAT3& GetThrust()		const { return _thrust; }
 
 
 

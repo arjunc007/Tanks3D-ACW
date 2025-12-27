@@ -79,7 +79,7 @@ void PhysicsComponent::LimitToMaximumSpeed(float max)
 
 /******************************************************************************************************************/
 
-DirectX::XMFLOAT3 PhysicsComponent::GetObjectPosition()
+const DirectX::XMFLOAT3& PhysicsComponent::GetObjectPosition()
 {
 	return _parent->GetPosition();
 }

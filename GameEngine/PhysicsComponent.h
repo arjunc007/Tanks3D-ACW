@@ -18,7 +18,7 @@ public:
 
 	// Gets/Sets
 public:
-	DirectX::XMFLOAT3 GetVelocity()	const { return _velocity; }
+	const DirectX::XMFLOAT3& GetVelocity()	const { return _velocity; }
 	void SetVelocity(DirectX::XMFLOAT3 v) { _velocity = v; }
 
 	float GetMaxSpeed()		const { return _maxSpeed; }
@@ -42,6 +42,6 @@ public:
 	// Extra Functions
 public:
 	void LimitToMaximumSpeed(float max);
-	DirectX::XMFLOAT3 GetObjectPosition();
+	const DirectX::XMFLOAT3& GetObjectPosition();
 	void SetObjectPosition(DirectX::XMFLOAT3 v);
 };
