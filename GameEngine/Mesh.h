@@ -46,6 +46,8 @@ public:
 
 	float CalculateMaxSize() const;
 
+	void SetTextureTiling(float tileFactor);
+
 	// Loads the Mesh from a file (returns true if loaded OK)
 	bool LoadFromFile(std::string filename);
 

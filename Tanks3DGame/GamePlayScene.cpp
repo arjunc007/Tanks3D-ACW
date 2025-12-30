@@ -45,6 +45,7 @@ void GamePlayScene::Initialise()
 
 	Ground* ground = new Ground(_sceneManager->GetGame()->GetMesh("ground"), _sceneManager->GetGame()->GetMaterial("ground"));
 	ground->SetScale(100.0f);
+	ground->SetTextureScale(4.f);
 	_gameObjects.push_back(ground);
 
 	Arena* arena = new Arena(_sceneManager->GetGame()->GetMesh("arena"), _sceneManager->GetGame()->GetMaterial("arena"));

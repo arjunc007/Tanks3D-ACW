@@ -53,6 +53,8 @@ public:
 	void SetScale(float v) { _scale.x = _scale.y = _scale.z = v; }
 	void SetScale(DirectX::XMFLOAT3 v) { _scale = v; }
 
+	void SetTextureScale(float texScale);
+
 	const DirectX::XMFLOAT3& GetPosition()								const { return _position; }
 	void SetPosition(DirectX::XMFLOAT3 v) { _position = v; }
 

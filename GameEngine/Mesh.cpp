@@ -6,6 +6,7 @@
 #include "VBO_GL.h"
 #endif
 #include "DirectXMath.h"
+#include "Game.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -280,3 +281,15 @@ bool Mesh::LoadFromStream(std::ifstream& in)
 }
 
 /******************************************************************************************************************/
+
+void Mesh::SetTextureTiling(float tileFactor)
+{
+	for (Vertex& v : _vertices)
+	{
+		v._texture[0] *= tileFactor;
+		v._texture[1] *= tileFactor;
+	}
+
+	Reset();
+	CreateVBO(Game::TheGame->GetRenderer());
+}

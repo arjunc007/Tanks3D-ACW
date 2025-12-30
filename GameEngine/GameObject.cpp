@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "GameObjectComponent.h"
 #include "Message.h"
+#include "RenderComponent.h"
 #include "DirectXMath.h"
 
 /******************************************************************************************************************/
@@ -157,4 +158,14 @@ void GameObject::SetRotation(float pitch, float yaw, float roll)
 	DirectX::XMVECTOR rotation = DirectX::XMQuaternionRotationRollPitchYaw(DirectX::XMConvertToRadians(pitch), DirectX::XMConvertToRadians(yaw), DirectX::XMConvertToRadians(roll));
 
 	DirectX::XMStoreFloat4(&_rotation, rotation);
+}
+
+void GameObject::SetTextureScale(float texScale)
+{
+	RenderComponent* rc = static_cast<RenderComponent*>(GetComponent("render"));
+
+	if (rc)
+	{
+		rc->SetTextureScale(texScale);
+	}
 }

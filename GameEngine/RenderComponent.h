@@ -27,6 +27,7 @@ public:
 	Material * GetMaterial()						const { return _material; }
 	void SetMaterial(Material* m) { _material = m; }
 	void SetColour(DirectX::XMFLOAT4 c) { _material->SetColor(c); }
+	void SetTextureScale(float s) { _mesh->SetTextureTiling(s); }
 
 	bool ShouldDraw()						const { return _shouldDraw; }
 	void ShouldDraw(bool v) { _shouldDraw = v; }
