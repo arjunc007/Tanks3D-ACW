@@ -108,3 +108,17 @@ bool Material::LoadPixelShader(Renderer* renderer, const wchar_t* fileName)
 }
 
 /******************************************************************************************************************/
+
+void Material::SetData(const DirectX::XMFLOAT2& tiling, const DirectX::XMFLOAT2& offset)
+{
+	_data.tiling = tiling;
+	_data.offset = offset;
+}
+
+void Material::SetData(float tileX, float tileY, float offsetX, float offsetY)
+{
+	_data.tiling.x = tileX;
+	_data.tiling.y = tileY;
+	_data.offset.x = offsetX;
+	_data.offset.y = offsetY;
+}

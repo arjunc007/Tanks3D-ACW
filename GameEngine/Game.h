@@ -22,12 +22,12 @@ class Renderer;
 class Window;
 
 // Typedefs
-typedef std::map<std::string, Mesh*> MeshMap;
-typedef std::map<std::string, Mesh*>::iterator MeshMapIterator;
-typedef std::map<std::string, Material*> MaterialMap;
-typedef std::map<std::string, Material*>::iterator MaterialMapIterator;
-typedef std::map<std::string, Font*> FontMap;
-typedef std::map<std::string, Font*>::iterator FontMapIterator;
+using MeshMap = std::map<std::string, Mesh*>;
+using MeshMapIterator = std::map<std::string, Mesh*>::iterator;
+using MaterialMap = std::map<std::string, Material*>;
+using MaterialMapIterator = std::map<std::string, Material*>::iterator;
+using FontMap = std::map<std::string, Font*>;
+using FontMapIterator = std::map<std::string, Font*>::iterator;
 
 // Generic game class
 class Game

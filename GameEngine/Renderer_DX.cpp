@@ -79,6 +79,13 @@ void Renderer_DX::Draw(const Mesh* mesh, const Material* material, const DirectX
 	uniforms.viewMatrix = DirectX::XMMatrixTranspose(viewMatrix);
 	uniforms.projectionMatrix = DirectX::XMMatrixTranspose(projectionMatrix);
 
+	MaterialBuffer matBuffer;
+	if (material)
+	{
+		matBuffer.tiling = material->GetData().tiling;
+		matBuffer.offset = material->GetData().offset;
+	}
+
 	DirectX::XMFLOAT4 eyePos;
 	DirectX::XMStoreFloat4(&eyePos, DirectX::XMVectorNegate(viewMatrix.r[3]));
 
@@ -97,14 +104,22 @@ void Renderer_DX::Draw(const Mesh* mesh, const Material* material, const DirectX
 	_context->VSSetConstantBuffers(0, 1, &_uniformBuffer);
 	_context->PSSetConstantBuffers(0, 1, &_uniformBuffer);
 
+	_context->Map(_materialBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);
+	memcpy(ms.pData, &matBuffer, sizeof(MaterialBuffer));
+	_context->Unmap(_materialBuffer, NULL);
+
+	_context->VSSetConstantBuffers(1, 1, &_materialBuffer);
+
 	_context->Map(_cameraBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);
 	memcpy(ms.pData, &cameraBuffer, sizeof(CameraBuffer));
 	_context->Unmap(_cameraBuffer, NULL);
 
-	_context->VSSetConstantBuffers(1, 1, &_cameraBuffer);
+	_context->VSSetConstantBuffers(2, 1, &_cameraBuffer);
 
-	if(material)
+	if (material)
+	{
 		material->GetTexture()->Draw(this);
+	}
 
 	mesh->GetVBO()->Draw(this);
 }
@@ -283,6 +298,14 @@ void Renderer_DX::InitialiseShaders()
 
 	// Create the buffer.
 	_device->CreateBuffer(&cbDesc, &InitData, &_uniformBuffer);
+
+	//Material buffer
+	MaterialBuffer matData;
+
+	cbDesc.ByteWidth = sizeof(matData);
+	InitData.pSysMem = &matData;
+
+	_device->CreateBuffer(&cbDesc, &InitData, &_materialBuffer);
 
 	//Camera buffer
 	CameraBuffer camera;

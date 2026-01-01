@@ -27,8 +27,10 @@ void ATBComponent::Start()
 #ifdef BUILD_DIRECTX
 	TwInit(TW_DIRECT3D11, static_cast<const Renderer_DX*>(Window::TheWindow->GetRenderer())->GetDevice());
 #endif
-
-	TwWindowSize(Window::TheWindow->_width, Window::TheWindow->_height);
+	TwDefine(" GLOBAL fontSize=3 ");
+	TwDefine(" GLOBAL fontResizable=true ");
+	TwDefine(" GLOBAL iconPos=1 ");
+	TwWindowSize(Window::TheWindow->_width / 2, Window::TheWindow->_height / 2);
 
 	myBar = TwNewBar(_parent->GetType().c_str());
 }

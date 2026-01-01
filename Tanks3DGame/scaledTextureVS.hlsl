@@ -23,6 +23,12 @@ cbuffer uniforms : register(b0)
 	float4x4 projectionMatrix;
 };
 
+cbuffer material : register(b1)
+{
+    float2 tiling;
+    float2 offset;
+}
+
 PS_INPUT VShader(VS_INPUT input)
 {
 	PS_INPUT output = (PS_INPUT)0;
@@ -32,7 +38,7 @@ PS_INPUT VShader(VS_INPUT input)
 	output.position = mul(output.position, projectionMatrix);
 
 	output.worldPos = mul(float4(input.pos, 1.0f), worldMatrix);
-	output.tex = input.tex * 4.5f;
+    output.tex = (input.tex * tiling) + offset;
 	output.normal = input.norm;
 
 	return output;

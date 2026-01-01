@@ -4,7 +4,7 @@ SamplerState sampleType : register(s0);
 static const float4 LightColor = float4(1, 1, 1, 1);
 static const float3 LightPos[2] = { float3(13, 20, 0), float3(0, 30, 11) };
 
-cbuffer camera : register(b1)
+cbuffer camera : register(b2)
 {
 	float4 Eye;
 }

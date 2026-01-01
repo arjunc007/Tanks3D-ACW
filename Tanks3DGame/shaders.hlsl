@@ -28,7 +28,7 @@ cbuffer uniforms : register(b0)
 	float4x4 projectionMatrix;
 };
 
-cbuffer camera : register(b1)
+cbuffer camera : register(b2)
 {
 	float4 Eye;
 }

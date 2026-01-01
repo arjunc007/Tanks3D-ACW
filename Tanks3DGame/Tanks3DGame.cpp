@@ -33,8 +33,8 @@ void Tanks3DGame::Initialise(Window* w)
 		i->second->CreateVBO(_renderer);
 	}
 
-	_sceneManager.PushScene(new MainMenuScene());
-	//_sceneManager.PushScene(new GamePlayScene());
+	//_sceneManager.PushScene(new MainMenuScene());
+	_sceneManager.PushScene(new GamePlayScene());
 
 	//_gameState = Playing;
 }

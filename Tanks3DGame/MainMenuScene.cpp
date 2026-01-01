@@ -32,8 +32,6 @@ MainMenuScene::~MainMenuScene()
 
 void MainMenuScene::Initialise()
 {
-
-
 	//_text = new Font_DX();
 	//_title = new WordDisplay();
 	//_title->SetPosition(Vector4(-0.45f, 0.1f, 0));

@@ -5,17 +5,25 @@
 #include <DirectXMath.h>
 #include "Renderer.h"
 
-typedef struct UniformBuffer
+struct UniformBuffer
 {
 	DirectX::XMMATRIX modelMatrix;
 	DirectX::XMMATRIX viewMatrix;
 	DirectX::XMMATRIX projectionMatrix;
-} UniformBuffer;
+};
 
-typedef struct CameraBuffer
+struct MaterialBuffer
+{
+	MaterialBuffer() : tiling(1.f, 1.f), offset(0.f, 0.f)
+	{}
+	DirectX::XMFLOAT2 tiling;
+	DirectX::XMFLOAT2 offset;
+};
+
+struct CameraBuffer
 {
 	DirectX::XMFLOAT4 eyePos;
-} CameraBuffer;
+};
 
 // DirectX Device & Context
 class Renderer_DX :
@@ -35,6 +43,7 @@ protected:
 	ID3D11VertexShader*		_vertexShader;			// the pointer to the vertex shader
 	ID3D11PixelShader*		_pixelShader;			// the pointer to the pixel shader
 	ID3D11Buffer*			_uniformBuffer;			// Stores the model, view and projection matrices
+	ID3D11Buffer*			_materialBuffer;		// Stores the material data
 	ID3D11Buffer*			_cameraBuffer;			// Stores the camera position
 	ID3D11SamplerState*		_samplerState;			//Store the sampler state
 

@@ -1,6 +1,7 @@
 #include "GamePlayScene.h"
 #include "SceneManager.h"
 #include "Game.h"
+#include "Material.h"
 #include "RenderSystem.h"
 #include "Message.h"
 #include "GameOverScene.h"
@@ -43,7 +44,9 @@ void GamePlayScene::Initialise()
 	_tank->SetScale(0.5f);
 	_gameObjects.push_back(_tank);
 
-	Ground* ground = new Ground(_sceneManager->GetGame()->GetMesh("ground"), _sceneManager->GetGame()->GetMaterial("ground"));
+	Material* groundMat = _sceneManager->GetGame()->GetMaterial("ground");
+	groundMat->SetData(5.f, 5.f);
+	Ground* ground = new Ground(_sceneManager->GetGame()->GetMesh("ground"), groundMat);
 	ground->SetScale(100.0f);
 	_gameObjects.push_back(ground);
 
