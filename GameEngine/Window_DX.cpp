@@ -43,8 +43,8 @@ Window_DX::Window_DX(Game* game, int width, int height, HINSTANCE hInstance, int
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		CW_USEDEFAULT,
-		CW_USEDEFAULT,
+		wr.right - wr.left,	// x2.5 = 4800x2700
+		wr.bottom - wr.top,
 		NULL,
 		NULL,
 		hInstance,
@@ -107,8 +107,10 @@ LRESULT CALLBACK Window_DX::WindowProc(HWND hWnd, UINT message, WPARAM wParam, L
 void Window_DX::Initialise()
 {
 	// Initialise DirectX
+	RECT clientRect; 
+	GetClientRect(_hWnd, &clientRect);
 	_renderer = new Renderer_DX(_hWnd);
-	_renderer->Initialise(_width, _height);
+	_renderer->Initialise(static_cast<int>(clientRect.right - clientRect.left), static_cast<int>(clientRect.bottom - clientRect.top));
 
 	// Setup Game
 	_game->Initialise(this);

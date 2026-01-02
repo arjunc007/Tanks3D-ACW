@@ -18,6 +18,9 @@ ImGuiComponent::~ImGuiComponent()
 
 void ImGuiComponent::Start()
 {
+	ImGui_ImplWin32_EnableDpiAwareness();
+	float main_scale = ImGui_ImplWin32_GetDpiScaleForMonitor(::MonitorFromPoint(POINT{ 0, 0 }, MONITOR_DEFAULTTOPRIMARY));
+
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -26,8 +29,9 @@ void ImGuiComponent::Start()
 
 	ImGui::StyleColorsDark();
 
-	ImGui::GetStyle().ScaleAllSizes(2.5f);
-	io.FontGlobalScale = 2.5f;
+	ImGuiStyle& style = ImGui::GetStyle();
+	style.ScaleAllSizes(main_scale);        // Bake a fixed style scale. (until we have a solution for dynamic style scaling, changing this requires resetting Style + calling this again)
+	style.FontScaleDpi = main_scale;
 
 #ifdef BUILD_DIRECTX
 	const Renderer_DX* renderer = static_cast<const Renderer_DX*>(Window::TheWindow->GetRenderer());
