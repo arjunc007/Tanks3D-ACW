@@ -187,6 +187,9 @@
     <PostBuildEvent>
       <Command>xcopy /y /d "$(ProjectDir)\..\AntTweakBar\lib\AntTweakBar.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <Manifest>
+      <EnableDpiAwareness>false</EnableDpiAwareness>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - OpenGL|Win32'">
     <ClCompile>
@@ -218,6 +221,9 @@
     <PostBuildEvent>
       <Command>xcopy /y /d "$(ProjectDir)\..\AntTweakBar\lib\AntTweakBar64.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <Manifest>
+      <EnableDpiAwareness>false</EnableDpiAwareness>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - OpenGL|x64'">
     <ClCompile>
@@ -310,6 +316,7 @@
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GamePlayScene.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="ImGuiDebug.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="Obstacle.cpp" />
@@ -331,6 +338,7 @@
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GamePlayScene.h" />
     <ClInclude Include="Ground.h" />
+    <ClInclude Include="ImGuiDebug.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PauseScene.h" />

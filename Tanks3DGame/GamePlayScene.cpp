@@ -69,7 +69,8 @@ void GamePlayScene::Initialise()
 	_antTweakBar = new ATB();
 	_gameObjects.push_back(_antTweakBar);
 
-	
+	_debugUI = new ImGuiDebug();
+	_gameObjects.push_back(_debugUI);
 
 	// Start all objects to set them up
 	for (int i = 0; i < (int)_gameObjects.size(); i++)
@@ -155,6 +156,7 @@ void GamePlayScene::Render(RenderSystem* renderer)
 	renderer->Process(_gameObjects, 0, _camera->GetViewMatrix(), _camera->GetProjectionMatrix());
 	
 	_antTweakBar->Draw();
+	_debugUI->Draw();
 }
 
 /******************************************************************************************************************/

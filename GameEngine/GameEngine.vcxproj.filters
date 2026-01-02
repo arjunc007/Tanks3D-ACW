@@ -19,6 +19,9 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{ae2dc742-3edd-4836-948d-20b0f82575b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{2fbc37d0-d1cd-4054-b02a-44e028740438}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Message.cpp" />
@@ -157,6 +160,30 @@
       <Filter>Platform Independent</Filter>
     </ClCompile>
     <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="..\ImGui\imgui.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ImGui\imgui_demo.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ImGui\imgui_impl_dx11.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ImGui\imgui_impl_win32.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ImGui\imgui_draw.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ImGui\imgui_tables.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ImGui\imgui_widgets.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MathsHelper.h" />
@@ -301,6 +328,33 @@
     </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>Platform Independent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imgui.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imgui_impl_dx11.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imconfig.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imgui_impl_win32.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imgui_internal.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imstb_rectpack.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imstb_textedit.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ImGui\imstb_truetype.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

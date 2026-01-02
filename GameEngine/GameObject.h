@@ -10,9 +10,9 @@ class Message;
 
 
 // Typedefs
-typedef std::map<std::string, GameObjectComponent*> ComponentMap;
-typedef std::map<std::string, GameObjectComponent*>::iterator ComponentMapIterator;
-typedef std::vector<GameObjectComponent*>::iterator ComponentListIterator;
+using ComponentMap = std::map<std::string, GameObjectComponent*>;
+using ComponentMapIterator = std::map<std::string, GameObjectComponent*>::iterator;
+using ComponentListIterator = std::vector<GameObjectComponent*>::iterator;
 
 
 // Now new and improved to use a component-based architecture

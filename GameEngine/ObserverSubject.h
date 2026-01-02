@@ -6,9 +6,9 @@
 class Message;
 class Observer;
 
-typedef std::map<std::string, std::vector<Observer*> > MessageListenerMap;
-typedef std::map<std::string, std::vector<Observer*> >::iterator MessageListenerMapIterator;
-typedef std::vector<Observer*>::iterator ObserverListIterator;
+using MessageListenerMap = std::map<std::string, std::vector<Observer*> >;
+using MessageListenerMapIterator = std::map<std::string, std::vector<Observer*> >::iterator;
+using ObserverListIterator = std::vector<Observer*>::iterator;
 
 /// Abstract parent class for the Observer pattern
 /// This class should be inherited by objects that want to be observed and pass messages to their Observers

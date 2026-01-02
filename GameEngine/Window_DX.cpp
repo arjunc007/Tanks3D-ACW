@@ -1,11 +1,16 @@
 #if BUILD_DIRECTX
 #include "Window_DX.h"
 #include "Renderer_DX.h"
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
 #include "Game.h"
 
 #ifdef _DEBUG
 #include "Logger.h"
 #endif
+
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 /******************************************************************************************************************/
 
@@ -59,6 +64,9 @@ Window_DX::~Window_DX()
 // This is the main message handler for the program
 LRESULT CALLBACK Window_DX::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+		return true;
+
 	switch (message)
 	{
 	case WM_CREATE:

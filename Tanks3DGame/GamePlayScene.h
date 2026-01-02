@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Tank.h"
 #include "ATB.h"
+#include "ImGuiDebug.h"
 
 class GamePlayScene :
 	public Scene
@@ -27,6 +28,7 @@ protected:
 	Camera*								_camera;
 	Tank*								_tank;
 	ATB*								_antTweakBar;
+	ImGuiDebug*							_debugUI;
 	//ScoreDisplay*						_scoreDisplay;
 
 	double								_restartCounter;
