@@ -125,46 +125,46 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|Win32'">
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;$(IncludePath)</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;$(IncludePath)</IncludePath>
     <LibraryPath>..\AntTweakBar\lib;$(SolutionDir)$(Configuration)\;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - OpenGL|Win32'">
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;..\GameEngine;C:\Users\Arjun\Documents\Visual Studio 2017\Projects\GameEngineACW\AntTweakBar\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;..\GameEngine;C:\Users\Arjun\Documents\Visual Studio 2017\Projects\GameEngineACW\AntTweakBar\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\AntTweakBar\lib;C:\Users\Arjun\Documents\Visual Studio 2017\Projects\GameEngineACW\AntTweakBar\lib;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - OpenGL|Win32'">
     <LibraryPath>..\AntTweakBar\lib;$(SolutionDir)$(Configuration)\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - DirectX|Win32'">
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
     <LibraryPath>..\AntTweakBar\lib;..\AntTweakBar\lib;$(SolutionDir)$(Configuration)\;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DirectX|x64'">
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\;..\AntTweakBar\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <ExecutablePath>..\AntTweakBar\include;..\GameEngine;$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - OpenGL|x64'">
     <ExecutablePath>..\AntTweakBar\include;..\GameEngine;$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
     <LibraryPath>..\AntTweakBar\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - DirectX|x64'">
     <ExecutablePath>..\AntTweakBar\include;..\GameEngine;$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
     <LibraryPath>..\AntTweakBar\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - OpenGL|x64'">
     <ExecutablePath>..\AntTweakBar\include;..\GameEngine;$(VC_ExecutablePath_x64);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
-    <IncludePath>..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>..\ImGui;..\AntTweakBar\include;..\GameEngine;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
     <LibraryPath>..\AntTweakBar\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>

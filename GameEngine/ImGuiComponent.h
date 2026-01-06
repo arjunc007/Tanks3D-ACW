@@ -19,6 +19,6 @@ public:
 	virtual void End() override;
 
 public:
-	void Draw();
+	void Draw(void (*OnGUI)());
 };
 

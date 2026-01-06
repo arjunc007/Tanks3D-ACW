@@ -11,5 +11,8 @@ public:
 
 public:
 	void Draw();
+
+private:
+	//void OnGUI();
 };
 
