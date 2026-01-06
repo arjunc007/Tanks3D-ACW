@@ -29,6 +29,8 @@ public:
 
 	//Data
 private:
+	double _renderTime = 0.0;
+	double _targetFrameRate = 1 / 60.0;
 
 	//Structors
 public:

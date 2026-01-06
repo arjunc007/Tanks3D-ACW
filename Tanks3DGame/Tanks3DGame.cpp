@@ -77,5 +77,10 @@ void Tanks3DGame::Run()
 	}
 
 	//Draw
-	Render();
+	_renderTime += _timer->DeltaTime();
+	if (_renderTime >= _targetFrameRate)
+	{
+		_renderTime = 0.0;
+		Render();
+	}
 }
